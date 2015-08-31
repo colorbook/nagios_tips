@@ -21,48 +21,48 @@
 
 ## 解決方法細節
 
-### PotVm 端
+### Remote Client 端
 1. 安裝相關套件
 	```bash
-	[root@PotVm ~]# yum install -y epel-release.noarch	#安裝 epel 第三方 reponsitiory ，因為很多 nagios plugin 只有第三方才有釋出。
-    [root@PotVm ~]# yum update	#更新 yum 套件清單
-    [root@PotVm ~]# yum install openssl nrpe nagios-plugin*	#安裝 openssl 因為 nrpe 查詢過程或使用SSL
+	[root@RemoteClient ~]# yum install -y epel-release.noarch	#安裝 epel 第三方 reponsitiory ，因為很多 nagios plugin 只有第三方才有釋出。
+    [root@RemoteClient ~]# yum update	#更新 yum 套件清單
+    [root@RemoteClient ~]# yum install openssl nrpe nagios-plugin*	#安裝 openssl 因為 nrpe 查詢過程或使用SSL
 	```
     
 2. nrpe.cfg 設定
 	編輯NREP設定檔
     ```bash
-    [root@PotVm ~]# vim /etc/nagios/nrpe.cfg
+    [root@RemoteClient ~]# vim /etc/nagios/nrpe.cfg
     ...
     allowed_hosts=127.0.0.1, 10.3.76.69	#設定允許 IP 為 127.0.0.1 與 10.3.76.69 (為 Honeywall IP)
     ```
 
 3. 服務重啟
 	```bash
-    [root@PotVm ~]# systemctl enable nrpe.service	#設定開機啟動
-    [root@PotVm ~]# systemctl restart nrpe.service	#設定重啟服務
+    [root@RemoteClient ~]# systemctl enable nrpe.service	#設定開機啟動
+    [root@RemoteClient ~]# systemctl restart nrpe.service	#設定重啟服務
     ```
     
 4. 確認設定狀況
 	```bash
-    [root@PotVm ~]# /usr/lib64/nagios/plugins/check_nrpe -H 127.0.0.1	#測試服務是否正常
+    [root@RemoteClient ~]# /usr/lib64/nagios/plugins/check_nrpe -H 127.0.0.1	#測試服務是否正常
 	NRPE v2.15
-    [root@PotVm ~]# /usr/lib64/nagios/plugins/check_nrpe -H 127.0.0.1 -c check_users	#測試相關查詢內容
+    [root@RemoteClient ~]# /usr/lib64/nagios/plugins/check_nrpe -H 127.0.0.1 -c check_users	#測試相關查詢內容
     USERS OK - 3 users currently logged in |users=3;5;10;0
     ```
 
-### Honeywall 端
+### Proxy Client 端
 1. 安裝相關套件
 	```bash
-	[root@Honeywall ~]# yum install -y epel-release.noarch	#安裝 epel 第三方 reponsitiory ，因為很多 nagios plugin 只有第三方才有釋出。
-    [root@Honeywall ~]# yum update	#更新 yum 套件清單
-    [root@Honeywall ~]# yum install openssl nrpe nagios-plugin*	#安裝 openssl 因為 nrpe 查詢過程或使用SSL
+	[root@ProxyClient ~]# yum install -y epel-release.noarch	#安裝 epel 第三方 reponsitiory ，因為很多 nagios plugin 只有第三方才有釋出。
+    [root@ProxyClient ~]# yum update	#更新 yum 套件清單
+    [root@ProxyClient ~]# yum install openssl nrpe nagios-plugin*	#安裝 openssl 因為 nrpe 查詢過程或使用SSL
 	```
     
 2. nrpe.cfg 設定
 	編輯NREP設定檔
     ```bash
-    [root@Honeywall ~]# vim /etc/nagios/nrpe.cfg
+    [root@HProxyClient ~]# vim /etc/nagios/nrpe.cfg
     ...
     allowed_hosts=127.0.0.1, 10.3.76.65	#設定允許 IP 為 127.0.0.1 與 10.3.76.65 (為 Nagios Server)
     command[proxy_check]=/usr/lib64/nagios/plugins/check_nrpe -t 60 -H 10.3.76.71 -c check_users	#自定義 command，綁定讀取 PotVM 並由 PotVM 本地執行 check_users 指令，將結果回傳，並且設定最大等待時間為 60 秒。
@@ -70,19 +70,19 @@
 
 3. 服務重啟
 	```bash
-    [root@Honeywall ~]# systemctl enable nrpe.service	#設定開機啟動
-    [root@Honeywall ~]# systemctl restart nrpe.service	#設定重啟服務
+    [root@ProxyClient ~]# systemctl enable nrpe.service	#設定開機啟動
+    [root@ProxyClient ~]# systemctl restart nrpe.service	#設定重啟服務
     ```
 
 4. 確認設定狀況
 	```bash
-    [root@Honeywall ~]# /usr/lib64/nagios/plugins/check_nrpe -H 127.0.0.1	#測試服務是否正常
+    [root@ProxyClient ~]# /usr/lib64/nagios/plugins/check_nrpe -H 127.0.0.1	#測試服務是否正常
 	NRPE v2.15
-    [root@PotVm ~]# /usr/lib64/nagios/plugins/check_nrpe -H 127.0.0.1 -c check_users	#測試相關查詢內容
+    [root@ProxyClient ~]# /usr/lib64/nagios/plugins/check_nrpe -H 127.0.0.1 -c check_users	#測試相關查詢內容
     USERS OK - 3 users currently logged in |users=3;5;10;0
-    [root@PotVm ~]# /usr/lib64/nagios/plugins/check_nrpe -H 10.3.76.71	#測試 PotVM 連線是否正常
+    [root@ProxyClient ~]# /usr/lib64/nagios/plugins/check_nrpe -H 10.3.76.71	#測試 PotVM 連線是否正常
 	NRPE v2.15
-    [root@Honeywall ~]# /usr/lib64/nagios/plugins/check_nrpe -H 10.3.76.71 /usr/lib64/nagios/plugins/check_nrpe -H 10.3.76.71 -c check_load	#測試系統負載命令
+    [root@ProxyClient ~]# /usr/lib64/nagios/plugins/check_nrpe -H 10.3.76.71 /usr/lib64/nagios/plugins/check_nrpe -H 10.3.76.71 -c check_load	#測試系統負載命令
 OK - load average: 0.00, 0.01, 0.05|load1=0.000;15.000;30.000;0; load5=0.010;10.000;25.000;0; load15=0.050;5.000;20.000;0;
 	```
 
