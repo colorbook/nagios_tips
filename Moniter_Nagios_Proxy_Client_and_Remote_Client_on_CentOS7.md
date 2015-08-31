@@ -10,7 +10,9 @@
 
 ## 問題需求
 因在監控設備狀態時，我們在某一組架構遇到以下困難，使得無法透過 Nagios Server 去監控整組設備，其簡要架構如下：
+
 ![Nagios_Architecture](./Picture_Nagios/Nagios_Architecture.png)
+
 從上圖可以了解，Nagios Server 可透過 Public IP 對 Proxy Client 做查詢，但是對 Remote Client 卻無法，因為 Remote Client 為 Private IP，Nagiso Server 無法觸及 Remote Client。
 
 ## 解決方法概念
