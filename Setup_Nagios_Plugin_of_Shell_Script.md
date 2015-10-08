@@ -55,6 +55,7 @@ else
 fi
 ```
 根據 Nagios 官方 [Nagios Core－Nagios Plugin API](https://assets.nagios.com/downloads/nagioscore/docs/nagioscore/3/en/pluginapi.html) 說明文件提到，撰寫 Plugin 有兩項準則須遵守：
+
 1. Plugin 回傳值決定 Nagios State (監控服務的狀態分為：OK, WARNING, CRITICAL, UNKNOWN)，以下為對應表(參考於 Nagios 官網)：
 | Plugin Return Code  | Service State  | Host State  |
 |:-:|:-:|:-:|
