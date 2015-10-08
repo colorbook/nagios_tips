@@ -57,12 +57,13 @@ Nagios 支援多種程式語言撰寫 Plugin，本篇使用 Shell Script 撰寫�
 根據 Nagios 官方 [Nagios Core－Nagios Plugin API](https://assets.nagios.com/downloads/nagioscore/docs/nagioscore/3/en/pluginapi.html) 說明文件提到，撰寫 Plugin 有兩項準則須遵守：
 
     1. Plugin 回傳值決定 Nagios State (監控服務的狀態分為：OK, WARNING, CRITICAL, UNKNOWN)，以下為對應表(參考於 Nagios 官網)：
-    | Plugin Return Code  | Service State  | Host State  |
-    |:-:|:-:|:-:|
-    | 0  | OK  | UP  |
-    | 1  | WARNING  | UP or DOWN/UNRESEARCHABLE  |
-    | 2  | CRITICAL  | DOWN/UNRESEARCHABLE  |
-    | 3  | UNKNOWN  | DOWN/UNRESEARCHABLE  |
+
+| Plugin Return Code  | Service State  | Host State  |
+|:-:|:-:|:-:|
+| 0  | OK  | UP  |
+| 1  | WARNING  | UP or DOWN/UNRESEARCHABLE  |
+| 2  | CRITICAL  | DOWN/UNRESEARCHABLE  |
+| 3  | UNKNOWN  | DOWN/UNRESEARCHABLE  |
     
     2. 至少要回應一行文字做為監控輸出訊息，詳細說明可參考官網文件。
     
