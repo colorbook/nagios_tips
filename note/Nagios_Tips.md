@@ -3,7 +3,7 @@
 ## 目的
 收錄操作過程中瑣碎的設定與內容，並附上參考文獻。
 
-## Tip1	修改 Limit Results
+## Tip1 修改 Limit Results
 ##### 敘述
 修改 Nagios Web 單一頁面呈現的資料筆數。
 ##### 操作
@@ -21,6 +21,6 @@ result_limit=0
 ```
 ##### 呈現結果
 預設值改為 All，顯示所有資料。
-![Limit_Results](./Picture_Nagios/Limit_Results.png)
+![Limit_Results](../Picture_Nagios/Limit_Results.png)
 ##### 參考文獻
 [Nagios and Nagios Related Information－NRPE](http://sites.box293.com/nagios/guides/nrpe/proxying-or-double-hopping/nrpe)

@@ -64,9 +64,9 @@ Nagios 支援多種程式語言撰寫 Plugin，本篇使用 Shell Script 撰寫�
 | 1  | WARNING  | UP or DOWN/UNRESEARCHABLE  |
 | 2  | CRITICAL  | DOWN/UNRESEARCHABLE  |
 | 3  | UNKNOWN  | DOWN/UNRESEARCHABLE  |
-    
+
     2. 至少要回應一行文字做為監控輸出訊息，詳細說明可參考官網文件。
-    
+
 ### Nagios Server 端設定
 1. 設定 Nagios Plugin 指令
     ```bash
@@ -108,4 +108,4 @@ Nagios 支援多種程式語言撰寫 Plugin，本篇使用 Shell Script 撰寫�
     nagios  NagiosServer=(ALL) NOPASSWD:/usr/bin/ssh
     ```
 5. 執行結果
-    ![Nagios_Plugin_Show](./Picture_Nagios/Nagios_Plugin_Show.png)
+    ![Nagios_Plugin_Show](../Picture_Nagios/Nagios_Plugin_Show.png)
