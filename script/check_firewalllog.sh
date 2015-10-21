@@ -1,5 +1,13 @@
+# Title:    Nagios Plugin to check nagios client firewall service.
+# History:
+# Date,         Time,   Author, Version,    Description.
+# 2015/10/01,   18:19,  CCC,    v1,         Created Plugin.
+# REFERENCE:
+#   https://assets.nagios.com/downloads/nagioscore/docs/nagioscore/3/en/pluginapi.html
+
 #!/bin/bash
 
+# Get host ip and set related command.
 host_ip=$1
 log_num_file='/var/log/NUM_OF.log'
 num_no_log=0
