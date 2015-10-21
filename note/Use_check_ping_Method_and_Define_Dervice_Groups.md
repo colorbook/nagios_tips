@@ -44,6 +44,7 @@
 ### Service Groups
 1. 定義 service groups
 	注意：members 設定格式為 *host1,service1,host2,service2,...,hostn,servicen*
+
 	```bash
 	define servicegroup{
 			servicegroup_name   Ping_classc
