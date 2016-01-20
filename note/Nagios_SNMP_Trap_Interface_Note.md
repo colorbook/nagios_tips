@@ -90,6 +90,8 @@
     [root@NagiosServer ~]# /etc/init.d/snmpd start
     [root@NagiosServer ~]# /etc/init.d/snmptrapd start
     [root@NagiosServer ~]# /etc/init.d/snmptt start
+    [root@NagiosServer ~]# netstat -anp|grep 162	#檢查 SNMP Trap 服務埠口
+    udp    0    0 0.0.0.0:162    0.0.0.0:*    2930/snmptrapd
     [root@NagiosServer ~]# python /where/your/nsti_dir/runserver.py
     * Running on http://0.0.0.0:8080/ (Press CTRL+C to quit)
     ```
@@ -103,7 +105,7 @@
 
 ### 監控設備端
 1. 手動測試
-	利用 snmptrap 工具測試能否將 SNMP Trap 傳送至 SNMP Server，snmptrap 用法請參考 [snmptrap command](http://linuxcommand.org/man_pages/snmptrap1.html)。
+    利用 snmptrap 工具測試能否將 SNMP Trap 傳送至 SNMP Server，snmptrap 用法請參考 [snmptrap command](http://linuxcommand.org/man_pages/snmptrap1.html)。
     ```bash
     [root@TestServer ~]# snmptrap -v 2c -c public 10.3.76.123 "" NET-SNMP-EXAMPLES-MIB::netSnmpExampleHeartbeatNotification netSnmpExampleHeartbeatRate i 123456
     ```
