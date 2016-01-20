@@ -38,7 +38,7 @@
     ```
     
     安裝結束可以在瀏覽器測試 http://SERVER IP/nagios 安裝成功可以看到以下畫面，輸入方才設定的 Nagios 密碼就可登入 WebUI。
-    ![Nagios Access](./Picture_Nagios/Nagios_Access.png)
+    ![Nagios Access](../Picture_Nagios/Nagios_Access.png)
 
 2. 安裝 NSTI 套件
 	從 [Github－NSTI 3.0](https://github.com/NagiosEnterprises/nsti) 下載套件並執行安裝腳本
@@ -94,7 +94,7 @@
     * Running on http://0.0.0.0:8080/ (Press CTRL+C to quit)
     ```
     開啟瀏覽器輸入 http://YOUR IP/nsti，執行成功會看到以下畫面
-    ![NSTI WebUI](./Picture_Nagios/NSTI_WebUI.png)
+    ![NSTI WebUI](../Picture_Nagios/NSTI_WebUI.png)
 
 6. Trouble Shooting
 	* NSTI 運作背後是使用 MySQL 資料庫，安裝過程會預先設定 root 密碼，可至安裝記錄檔查看。
