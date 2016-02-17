@@ -28,7 +28,7 @@
 	CentOS 6 在 yam 已經整合 Nagios Core 3.5 套件，因此直接使用套件安裝(要使用最新版 Nagios Core 請參照官網說明進行安裝)。
 	```bash
     [root@NagiosServer ~]# yum update
-    [root@NagiosServer ~]# yum install -y nagios*
+    [root@NagiosServer ~]# yum install -y nagios*	#記得先安裝EPEL
     [root@NagiosServer ~]# htpasswd /etc/nagios/passwd nagiosadmin
 	New password:
 	Re-type new password:
@@ -43,7 +43,7 @@
 2. 安裝 NSTI 套件
 	從 [Github－NSTI 3.0](https://github.com/NagiosEnterprises/nsti) 下載套件並執行安裝腳本
     ```bash
-    [root@NagiosServer ~]# git clone git clone https://github.com/NagiosEnterprises/nsti.git
+    [root@NagiosServer ~]# git clone https://github.com/NagiosEnterprises/nsti.git	#先安裝git
     [root@NagiosServer ~]# sh /where/your/nsti_dir/install.sh
     ```
     安裝完成會在 nsti 資料夾中生成安裝記錄檔(install-timestamp.log)，詳細觀查記錄檔內容是否有錯誤訊息產生，如有錯誤訊息可參考官網 [Trouble Shooting](https://nagiosenterprises.github.io/nsti/installation.html#possible-nsti-install-gotcha-s)。
