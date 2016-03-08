@@ -6,8 +6,8 @@
 * 解決 snmpttconvertmib 轉換 MIB 檔為 SNMPTT 可讀取的設定檔過程出現的錯誤
 
 ## 參考文獻
-[Github－NSTI 3.0](https://github.com/NagiosEnterprises/nsti)
-[NSTI 3.0 Document](https://nagiosenterprises.github.io/nsti/index.html)
+* [Github－NSTI 3.0](https://github.com/NagiosEnterprises/nsti)
+* [NSTI 3.0 Document](https://nagiosenterprises.github.io/nsti/index.html)
 
 
 ## 版本資訊
@@ -136,15 +136,4 @@ snmpttconvertmib 轉換 MIB 檔為 SNMPTT 可讀取的設定檔過程出現錯�
     ![NSTI_Normal_Logs](../Picture_Nagios/NSTI_Unknown_Logs.png)
 
 ### 監控設備端
-1. 手動測試
-    利用 snmptrap 工具測試能否將 SNMP Trap 傳送至 SNMP Server，snmptrap 用法請參考 [snmptrap command](http://linuxcommand.org/man_pages/snmptrap1.html)。
-    ```bash
-    [root@TestServer ~]# snmptrap -v 2c -c public 10.3.76.123 "" NET-SNMP-EXAMPLES-MIB::netSnmpExampleHeartbeatNotification netSnmpExampleHeartbeatRate i 123456
-    ```
-    在 SNMP Server /var/log/messages 查看是否有收到 SNMP Trap 資料
-    ```bash
-    [root@NagiosServer ~]# tail -f /var/log/messages
-    ...
-    Jan 20 08:05:42 NagiosServer snmptrapd[6374]: 2016-01-20 02:06:42 <UNKNOWN> [UDP: [10.3.76.123]:59307->[10.3.76.123]]:#012.1.3.6.1.2.1.1.3.0 = Timeticks: (2017719) 5:36:17.19#011.1.3.6.1.6.3.1.1.4.1.0 = OID: .1.3.6.1.4.1.8072.2.3.0.1#011.1.3.6.1.4.1.8072.2.3.2.1 = INTEGER: 123456
-    ```
-    此外，開啟 NSTI WebUI 確認是否有資料存取。
+1. 待更新
